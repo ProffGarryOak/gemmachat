@@ -1,36 +1,144 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+### 🧠 GemmaChat — Local LLM Chatbot with Next.js, FastAPI & Ollama
 
-First, run the development server:
+> ✨ Your personal AI assistant, powered by Gemma 1B and running **fully offline**. Built with 💖 using **Next.js (App Router)** + **FastAPI** + **Ollama**.
+
+---
+
+
+
+---
+
+### 🚀 Features
+
+* 🤖 **Chat with Gemma 1B** — locally run LLM via Ollama
+* 🌐 **Next.js App Router Frontend** — modern UI with Tailwind & React Markdown
+* 🔐 **Secret Key Auth** — configurable `.env`-based API protection
+* 💳 **Credit System** — limited usage with UI feedback and recharge prompts
+* 📦 **Modular Backend** — FastAPI-based REST API for prompt generation
+* 📄 **Markdown Support** — beautifully rendered LLM responses
+
+---
+
+### 🛠️ Tech Stack
+
+| Layer       | Tech                                           |
+| ----------- | ---------------------------------------------- |
+| Frontend    | Next.js, React, Tailwind CSS, React Markdown   |
+| Backend     | FastAPI (Python)                               |
+| LLM Runtime | Ollama (Gemma 1B)                              |
+| Styling     | Tailwind CSS                                   |
+| Deployment  | Vercel (frontend), local for backend |
+
+---
+
+### 📦 Getting Started
+
+#### 🧠 Requirements
+
+* Node.js (v18+)
+* Python 3.10+
+* Ollama installed ([get it here](https://ollama.com))
+* Docker (optional)
+* Git
+
+#### 1️⃣ Clone the repo
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yourusername/gemmachat.git
+cd gemmachat
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+#### 2️⃣ Start the backend (FastAPI + Ollama)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+> 🔥 Ensure Ollama is installed and running locally
 
-## Learn More
+```bash
+# Pull the Gemma model (1B)
+ollama pull gemma:1b
 
-To learn more about Next.js, take a look at the following resources:
+# Inside /backend/
+cd backend
+python -m venv venv
+source venv/bin/activate  # or venv\Scripts\activate on Windows
+pip install -r requirements.txt
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Create a .env file
+echo SECRET_KEY=your-super-secret-key > .env
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Run FastAPI
+uvicorn main:app --reload
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### 3️⃣ Start the frontend (Next.js)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+# Inside /frontend/
+cd frontend
+npm install
+
+# Create .env.local
+echo NEXT_PUBLIC_SECRET_KEY=your-super-secret-key > .env.local
+echo NEXT_PUBLIC_API_URL=http://127.0.0.1:8000 > .env.local
+
+# Run frontend
+npm run dev
+```
+
+---
+
+### 📷 Preview
+
+
+
+---
+
+### ⚙️ API Overview
+
+| Method | Endpoint    | Params                | Description           |
+| ------ | ----------- | --------------------- | --------------------- |
+| GET    | `/generate` | `prompt`, `secretkey` | Generate LLM response |
+
+---
+
+### 💡 Deployment
+
+#### ✅ Frontend
+
+Deploy to **Vercel** or any static host:
+
+```bash
+# Vercel CLI (after login)
+vercel --prod
+```
+
+#### ✅ Backend
+
+You can run FastAPI locally or host it:
+
+* Using **Docker**
+* On **Render**, **Railway**, or a VPS
+* Expose via **ngrok** for testing
+
+---
+
+### 🧠 Credit System Logic
+
+* 🪙 Each prompt deducts 1 credit
+* 🔐 If credits expire, UI prompts for recharge
+* 📍 All logic handled client-side
+
+---
+
+### ✨ Inspiration
+
+This project was built to explore **offline AI integration** with beautiful frontend UX. It’s a solid foundation for:
+
+* Personal Assistants
+* Educational bots
+* Offline AI tools
+* Experimental LLM-based interfaces
