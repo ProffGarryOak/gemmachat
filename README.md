@@ -22,7 +22,7 @@
 ## 📁 Folder Structure
 
 
-
+```
 gemmachat/
 ├── app/
 │   ├── main.py               # FastAPI entrypoint
