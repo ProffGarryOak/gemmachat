@@ -24,16 +24,30 @@
 
 ```
 gemmachat/
-├── app/
-│   ├── main.py               # FastAPI entrypoint
-│   ├── auth.py               # API key authentication
-│   ├── credit\_system.py      # Credit checking, deduction, recharge
-│   ├── routes/
-│   │   ├── chat.py           # Gemma interaction endpoint
-│   │   └── status.py         # Usage check route
-├── .env                      # Store API keys & config
-├── requirements.txt
-└── README.md
+├── _mygpt_backend_fastapi/ # FastAPI backend with Gemma integration
+│ ├── pycache/
+│ ├── main.py # FastAPI app entrypoint
+│ └── requirements.txt # Python dependencies
+│
+├── mygptfe/ # Next.js frontend (GemmaChat UI)
+│ ├── app/ # Page routing and layout
+│ ├── components/ # Reusable React components
+│ ├── lib/ # Utility libraries (API handlers, helpers)
+│ ├── public/ # Static assets (icons, images)
+│ ├── .gitignore
+│ ├── README.md
+│ ├── eslint.config.mjs
+│ ├── jsconfig.json
+│ ├── next.config.mjs
+│ ├── package.json
+│ ├── package-lock.json
+│ └── postcss.config.mjs
+│
+├── gemmachat.code-workspace # VS Code workspace config
+├── .gitignore
+├── README.md
+├── package.json
+└── package-lock.json
 
 ```
 
